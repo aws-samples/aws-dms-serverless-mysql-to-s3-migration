@@ -3,7 +3,6 @@
 # vim: tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
 import json
-# import boto3
 
 import aws_cdk as cdk
 
@@ -129,6 +128,9 @@ class DMSServerlessAuroraMysqlToS3Stack(Stack):
     )
 
 
+    cdk.CfnOutput(self, 'DMSReplicationConfigArn',
+      value=dms_replication_config.ref,
+      export_name=f'{self.stack_name}-DMSReplicationConfigArn')
     cdk.CfnOutput(self, 'DMSReplicationConfigId',
       value=dms_replication_config.replication_config_identifier,
       export_name=f'{self.stack_name}-DMSReplicationConfigId')
